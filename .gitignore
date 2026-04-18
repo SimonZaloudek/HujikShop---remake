@@ -1,0 +1,40 @@
+# --- LocalWP & System Files ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+Thumbs.db
+*.log
+*.sql
+*.zip
+*.tar.gz
+conf/
+logs/
+
+# --- WordPress Core (Don't track these) ---
+app/public/wp-admin/
+app/public/wp-includes/
+app/public/*.php
+app/public/*.txt
+app/public/*.html
+app/public/.htaccess
+
+# --- Content ---
+# Ignore all plugins EXCEPT the ones you are actively configuring
+# (Optional: remove the line below if you want to track all installed plugins)
+app/public/wp-content/plugins/*
+
+# Ignore all themes EXCEPT your active theme (Astra)
+app/public/wp-content/themes/*
+!app/public/wp-content/themes/astra/
+!app/public/wp-content/themes/astra-child/
+
+# --- Media & Backups (Crucial to ignore) ---
+app/public/wp-content/uploads/
+app/public/wp-content/upgrade/
+app/public/wp-content/backups/
+app/public/wp-content/cache/
+
+# --- Plugin specific ignores ---
+app/public/wp-content/plugins/wp-migrate-db/
+app/public/wp-content/plugins/all-in-one-wp-migration/
