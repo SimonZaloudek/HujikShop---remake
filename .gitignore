@@ -38,3 +38,7 @@ app/public/wp-content/cache/
 # --- Plugin specific ignores ---
 app/public/wp-content/plugins/wp-migrate-db/
 app/public/wp-content/plugins/all-in-one-wp-migration/
+
+*.wpress
+app/public/wp-content/ai1wm-backups/
+app/public/wp-content/uploads/
