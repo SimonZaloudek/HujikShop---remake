@@ -212,3 +212,26 @@ require_once ASTRA_THEME_DIR . 'inc/abilities/bootstrap.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
+
+// ── Cart count badge (auto-updates via AJAX) ──
+add_filter('woocommerce_add_to_cart_fragments', function($fragments) {
+    $count = WC()->cart->get_cart_contents_count();
+    $fragments['.hujik-cart-badge'] = '<span class="hujik-cart-badge"' . 
+        ($count === 0 ? ' style="display:none"' : '') . 
+        '>' . $count . '</span>';
+    return $fragments;
+});
+
+add_action('wp_footer', function() {
+    $count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
+    echo '<style>.cart-icon-wrapper { position: relative; display: inline-block; }</style>';
+    echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var cartLink = document.querySelector("a[href*=\"cart\"] img, a[href*=\"kosik\"] img");
+            if (cartLink) {
+                var wrapper = cartLink.closest("a");
+                wrapper.classList.add("cart-icon-wrapper");
+            }
+        });
+    </script>';
+});
